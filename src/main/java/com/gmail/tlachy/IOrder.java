@@ -1,5 +1,6 @@
 package com.gmail.tlachy;
 
-public interface OrderResponse {
+public interface IOrder {
     int getQuantity();
+    IQuote getQuote();
 }

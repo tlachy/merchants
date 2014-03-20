@@ -4,14 +4,15 @@ import com.gmail.tlachy.*;
 import java.util.List;
 
 
-public class BestBrokerEver implements Broker {
+public class BestBrokerEver implements IBroker {
 
-    private final List<Merchant> merchants;
+    private final List<IMerchant> merchants;
 
 
-    public BestBrokerEver(List<Merchant> merchants) {
+    public BestBrokerEver(List<IMerchant> merchants) {
         this.merchants = merchants;
     }
+
 
 
     @Override
@@ -40,12 +41,12 @@ public class BestBrokerEver implements Broker {
      * @return how much it was purchased from best merchant or NULL if there is no merchant to purchase from
      */
     private Integer purchaseFromBestMerchant(int quantity){
-        Merchant bestMerchant = null;
-        Quote bestQuote = null;
+        IMerchant bestMerchant = null;
+        IQuote bestQuote = null;
 
-        for (Merchant m : merchants) {
+        for (IMerchant m : merchants) {
             try {
-                Quote q = m.quote();
+                IQuote q = m.quote();
                 if (q.getQuantity() <= 0) continue;
 
                 if (bestMerchant == null || (q.getPrice().compareTo(bestQuote.getPrice()) == -1)) {
@@ -71,28 +72,22 @@ public class BestBrokerEver implements Broker {
      * @param count
      * @return how much was purchased form merchant
      */
-    private int purchase(final Merchant bestMerchant, final Quote bestQuote, final int count) {
+    private int purchase(final IMerchant bestMerchant, final IQuote bestQuote, final int count) {
         try {
 
-            return bestMerchant.order(new Order() {
-                @Override
-                public int getQuantity() {
-                    return count;
-                }
+            return bestMerchant.order(new Order(count, bestQuote)).getQuantity();
 
-                @Override
-                public Quote getQuote() {
-                    return bestQuote;
-                }
-            }).getQuantity();
 
         } catch (Exception e) {
             return 0;
         }
     }
 
+    public List<IMerchant> getMerchants() {
+        return merchants;
+    }
 
-//    private List<Merchant> sort()  {
+    //    private List<IMerchant> sort()  {
 //        return merchants.stream().filter(m -> {
 //
 //            try {

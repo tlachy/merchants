@@ -7,35 +7,9 @@
     <bean id="broker" class="com.gmail.tlachy.impl.BestBrokerEver">
         <constructor-arg name="merchants">
             <list>
-                <ref bean="merchant_3_3_3" />
-                <ref bean="merchant_2_2_2" />
-                <ref bean="merchant_1_1_1" />
             </list>
         </constructor-arg>
     </bean>
-
-
-
-
-    <bean id="merchant_3_3_3" class="com.gmail.tlachy.impl.MerchantImpl">
-        <constructor-arg name="quantity" type="int" value="3"/>
-        <constructor-arg name="price" type="double" value="3"/>
-        <constructor-arg name="orderResponseCount" type="int" value="3"/>
-    </bean>
-
-    <bean id="merchant_2_2_2" class="com.gmail.tlachy.impl.MerchantImpl">
-        <constructor-arg name="quantity" type="int" value="2"/>
-        <constructor-arg name="price" type="double" value="2"/>
-        <constructor-arg name="orderResponseCount" type="int" value="2"/>
-    </bean>
-
-    <bean id="merchant_1_1_1" class="com.gmail.tlachy.impl.MerchantImpl">
-        <constructor-arg name="quantity" type="int" value="1"/>
-        <constructor-arg name="price" type="double" value="1"/>
-        <constructor-arg name="orderResponseCount" type="int" value="1"/>
-    </bean>
-
-
 
 
 </beans>
