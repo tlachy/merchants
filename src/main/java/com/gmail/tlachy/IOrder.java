@@ -1,6 +1,8 @@
 package com.gmail.tlachy;
 
+import java.math.BigDecimal;
+
 public interface IOrder {
     int getQuantity();
-    IQuote getQuote();
+    BigDecimal getPrice();
 }

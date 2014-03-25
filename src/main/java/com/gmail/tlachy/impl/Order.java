@@ -3,25 +3,37 @@ package com.gmail.tlachy.impl;
 import com.gmail.tlachy.IOrder;
 import com.gmail.tlachy.IQuote;
 
+import java.math.BigDecimal;
+
 public class Order implements IOrder {
 
     private int quantity;
-    private IQuote quote;
+    private BigDecimal price;
 
-    public Order(int quantity, IQuote quote) {
+    public Order(int quantity, BigDecimal price) {
+        if(price == null || quantity <= 0) throw new IllegalArgumentException();
+
         this.quantity = quantity;
-        this.quote = quote;
+        this.price = price;
     }
 
-    @Override
+
     public int getQuantity() {
-        return 0;
+        return quantity;
     }
 
-    @Override
-    public IQuote getQuote() {
-        return null;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -31,7 +43,7 @@ public class Order implements IOrder {
         Order order = (Order) o;
 
         if (quantity != order.quantity) return false;
-        if (!quote.equals(order.quote)) return false;
+        if (!price.equals(order.price)) return false;
 
         return true;
     }
@@ -39,7 +51,7 @@ public class Order implements IOrder {
     @Override
     public int hashCode() {
         int result = quantity;
-        result = 31 * result + quote.hashCode();
+        result = 31 * result + price.hashCode();
         return result;
     }
 }
