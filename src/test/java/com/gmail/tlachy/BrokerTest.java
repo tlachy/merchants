@@ -48,17 +48,32 @@ public class BrokerTest {
 //    }
 
     @Test
-    public void testBuy_from_2_merchant() throws Exception {
-        broker.purchase(1);
+    public void testBuy_1() throws Exception {
+        System.out.println("---------");
+        int purchased = broker.purchase(1);
+        System.out.println("-----"+purchased+"----");
+    }
 
-        Merchant m_1_1d = new Merchant(new Quote(1,1));
-        Merchant m_2_2d = new Merchant(new Quote(2,2));
+    @Test
+    public void testBuy_2() throws Exception {
+        System.out.println("---------");
+        int purchased = broker.purchase(2);
+        System.out.println("-----"+purchased+"----");
+    }
 
-        broker.getMerchants().add(m_1_1d);
-        broker.getMerchants().add(m_2_2d);
+    @Test
+    public void testBuy_3() throws Exception {
+        System.out.println("---------");
+        int purchased = broker.purchase(3);
+        System.out.println("-----"+purchased+"----");
 
-//        verify(m_1_1d).order(eq(new Order(1, new Quote(1, 1d))));
-//        verify(m_2_2d).order(eq(new Order(2, new Quote(2, 2d))));
+    }
+
+    @Test
+    public void testBuy_4() throws Exception {
+        System.out.println("---------");
+        int purchased = broker.purchase(4);
+        System.out.println("-----"+purchased+"----");
     }
 
 
